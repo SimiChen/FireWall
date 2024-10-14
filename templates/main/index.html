@@ -1,0 +1,316 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* Styles for the main menu */
+        #main-menu {
+            list-style-type: none; /* Remove bullet points */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styles for individual menu items */
+        #main-menu li {
+            display: block; /* Display menu items as blocks */
+            margin-bottom: 10px; /* Add spacing between menu items */
+        }
+
+        /* Styles for menu item links */
+        #main-menu li a {
+            color: #fff; /* Text color */
+            text-decoration: none; /* Remove underline */
+            padding: 5px 10px; /* Add padding */
+            display: block; /* Display links as blocks */
+        }
+
+        /* Styles for menu item icons */
+        #main-menu li a i {
+            margin-right: 5px; /* Add spacing between icon and text */
+        }
+
+        /* Hover effect for menu items */
+        #main-menu li a:hover {
+            background-color: #555; /* Background color on hover */
+        }
+
+
+        /* CSS for the container */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            height: 100vh; /* Set height to 100% of viewport height */
+        }
+
+        .navi-container {
+            background-color: #333; /* Background color */
+            padding: 10px; /* Add padding */
+            width: 5%; /* Set width to 5% of the screen width */
+            border: 5px solid #ccc; /* Border thickness */
+            border-radius: 10px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the container */
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Arrange items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+        .contain-container {
+            height: 50%;
+            width: 80%;
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Arrange items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+        .login-container {
+            width: 50%; /* Take up half of the width of its parent container */
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Arrange items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+            border: 1px solid #ccc; /* Border thickness */
+            padding: 20px; /* Padding inside the container */
+            border-radius: 10px; /* Border radius for rounded corners */
+            margin-bottom: 20px; /* Add space between containers */
+            display: none;
+        }
+
+        /* CSS for form elements */
+        .login-container form label {
+            display: block; /* Display labels as block elements */
+            margin-bottom: 10px; /* Add space between labels */
+        }
+
+        .login-container form input[type="text"],
+        .login-container form input[type="password"],
+        .login-container form input[type="submit"] {
+            width: 100%; /* Set input width to 100% */
+            padding: 8px; /* Padding for input elements */
+            margin-bottom: 15px; /* Add space between input elements */
+            border: 1px solid #ccc; /* Border for input elements */
+            border-radius: 5px; /* Border radius for rounded corners */
+        }
+
+        .login-container form input[type="submit"] {
+            background-color: #4CAF50; /* Green background color for submit button */
+            color: white; /* White text color for submit button */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        .login-container form input[type="submit"]:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        /* CSS for the button container */
+        .login-button-container {
+            width: calc(50% - 20px); /* Set width to half of the screen width */
+            padding: 20px; /* Padding inside the container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .button-container {
+            width: 50%; /* Take up half of the width of its parent container */
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Arrange items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+            border: 1px solid #ccc; /* Border thickness */
+            padding: 20px; /* Padding inside the container */
+            border-radius: 10px; /* Border radius for rounded corners */
+            margin-bottom: 20px; /* Add space between containers */
+        }
+
+        /* CSS for the title */
+        .button-container .title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* CSS for the buttons */
+        .button-container button {
+            display: inline-block;
+            margin: 0 10px; /* Adjust the margin as needed */
+        }
+
+        /* CSS for the message container */
+        .button-container .message-container {
+            text-align: center;
+            margin-top: 20px; /* Adjust the margin as needed */
+            overflow: hidden; /* Hide overflowing content */
+
+        }
+
+        /* CSS for the attack info container */
+        .atkinfo-container {
+            width: calc(50% - 20px); /* Set width to half of the screen width */
+            border: 5px solid #ccc; /* Border thickness */
+            border-radius: 10px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the container */
+        }
+
+        /* CSS for the title in the attack info container */
+        .atkinfo-container .title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* CSS for the message container in the attack info container */
+        .atkinfo-container .message-container {
+            text-align: left; /* Align text to the left */
+            margin-top: 20px; /* Adjust the margin as needed */
+            overflow: auto; /* Hide overflowing content */
+            height: 90%; /* Set height to 80% of the container */
+            border: 1px solid #ccc; /* Border for the container */
+        }
+
+        .display-container {
+            width: 95%; /* Set width to 95% of the screen width */
+            display: flex; /* Use flexbox */
+            flex-direction: row; /* Arrange items horizontally */
+            justify-content: space-between; /* Space items evenly */
+        }
+
+        /* CSS to clear default margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .title-container {
+            text-align: center; /* Center-align the content */
+            flex-grow: 1; /* Allow the title container to grow to fill the available space */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <!-- Container div for navigation -->
+        <div class="navi-container">
+            <ul id="main-menu" class="">
+                <li class="opened active">
+                    <a href="/main/main">
+                        <i class="entypo-gauge"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+
+                <li class="opened active">
+                    <a href="/main/login">
+                        <i class="entypo-globe"></i>
+                        <span>登录</span>
+                    </a>
+                </li>
+
+                <li class="opened active">
+                    <a href="/main/index">
+                        <i class="entypo-globe"></i>
+                        <span>侦测</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="display-container" id="container">
+            <!-- Container div for login and buttons -->
+            <div class="login-button-container">
+                <!-- Container div for buttons -->
+
+                    <div class="button-container">
+                    <!-- Title -->
+                    <div class="title">检测系统</div>
+
+                    <!-- Buttons -->
+                    <button onclick="window.location.href='{% url 'start_system' %}'">启动检测</button>
+                    <button onclick="window.location.href='{% url 'stop_system' %}'">停止检测</button>
+                    <button onclick="logout()">登出</button>
+
+                    <!-- Message container -->
+                    <div class="message-container">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+            <!-- Cointainer div for atk info -->
+            <div class="atkinfo-container">
+                <!-- Title -->
+                <div class="title">攻击信息</div>
+                <div class="message-container">
+                    <!-- Div to display the information -->
+                    <div id="info">攻击内容</div>
+
+                    <!-- JavaScript to handle server-sent events -->
+                    <script>
+
+                        // Create a new EventSource to listen for updates from the server
+                        const eventSource = new EventSource('/main/update_info/');
+                        const infoDiv = document.getElementById('info');
+
+                        // Event listener for when a new message is received
+                        eventSource.onmessage = function(event) {
+                            // Update the information on the page with the data received from the server
+                            console.log(event.data);
+                            infoDiv.innerHTML = event.data;
+                        };
+                        function logout(){
+                            localStorage.removeItem('username');
+                            window.location.href = "{% url 'login' %}";
+                            console.log('logout');
+                        }
+                    </script>
+
+                </div>
+            </div>
+        </div>
+        <div class="title-container" id="hide">
+            <h1 onclick="window.location.href='{% url 'login' %}'">此页面仅限登录用户访问</h1>
+        </div>
+    </div>
+
+    <script>
+        var username = localStorage.getItem('username');
+        var div = document.getElementById('container');
+        var hidden_div = document.getElementById('hide');
+        if (!username) {
+            console.log('hidden');
+            div.classList.add('hidden');
+            hidden_div.classList.remove('hidden');
+        }else{
+            console.log('show');
+            div.classList.remove('hidden');
+            hidden_div.classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>
+
+</html>
+

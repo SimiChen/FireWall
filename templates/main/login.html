@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+
+    <style>
+        /* Styles for the main menu */
+        #main-menu {
+            list-style-type: none; /* Remove bullet points */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styles for individual menu items */
+        #main-menu li {
+            display: block; /* Display menu items as blocks */
+            margin-bottom: 10px; /* Add spacing between menu items */
+        }
+
+        /* Styles for menu item links */
+        #main-menu li a {
+            color: #fff; /* Text color */
+            text-decoration: none; /* Remove underline */
+            padding: 5px 10px; /* Add padding */
+            display: block; /* Display links as blocks */
+        }
+
+        /* Styles for menu item icons */
+        #main-menu li a i {
+            margin-right: 5px; /* Add spacing between icon and text */
+        }
+
+        /* Hover effect for menu items */
+        #main-menu li a:hover {
+            background-color: #555; /* Background color on hover */
+        }
+
+
+        /* CSS for the container */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            height: 100vh; /* Set height to 100% of viewport height */
+        }
+
+        .navi-container {
+            background-color: #333; /* Background color */
+            padding: 10px; /* Add padding */
+            width: 5%; /* Set width to 5% of the screen width */
+            border: 5px solid #ccc; /* Border thickness */
+            border-radius: 10px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the container */
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Arrange items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+        /* CSS to clear default margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styles for the login form */
+        form {
+            width: 50%; /* Set width to 50% of the container */
+            margin: auto; /* Center the form horizontally */
+            padding: 20px; /* Add padding */
+            border: 2px solid #ccc; /* Border thickness */
+            border-radius: 10px; /* Border radius for rounded corners */
+        }
+
+        label {
+            display: block; /* Display labels as blocks */
+            margin-bottom: 10px; /* Add spacing between labels */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 97%; /* Set input width to 97% of its container */
+            padding: 10px; /* Add padding */
+            margin-bottom: 15px; /* Add spacing between inputs */
+            border: 1px solid #ccc; /* Border thickness */
+            border-radius: 5px; /* Border radius for rounded corners */
+        }
+
+        button[type="submit"],
+        button[type="button"] {
+            width: 97%; /* Set button width to 97% of its container */
+            padding: 10px; /* Add padding */
+            margin-bottom: 15px; /* Add spacing between buttons */
+            border: 1px solid #ccc; /* Border thickness */
+            border-radius: 5px; /* Border radius for rounded corners */
+            color: #fff; /* Text color */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        button[type="submit"] {
+            background-color: #333; /* Background color */
+        }
+        button[type="button"] {
+            background-color: #999; /* Background color */
+        }
+
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #555; /* Background color on hover */
+        }
+
+    </style>
+
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+
+            var username = document.forms["loginForm"]["username"].value;
+            var password = document.forms["loginForm"]["password"].value;
+
+            if (username == "" || password == "") {
+                alert("Username and password must be filled out");
+                return false;
+            }
+
+            var csrftoken = getCookie('csrftoken');
+
+            fetch('/main/login/login_view/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // Parse JSON response
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(data => {
+                if (data.status === "success") {
+                    localStorage.setItem('username', username);
+                    console.log(data);
+                    alert("Login successful");
+                } else {
+                    console.log(data);
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error); // Log any errors
+                // Handle error response
+            });
+        }
+
+        function register() {
+            var username = document.forms["loginForm"]["username"].value;
+            var password = document.forms["loginForm"]["password"].value;
+
+            console.log(username);
+
+            if (username === "" || password === "") {
+                alert("Username and password must be filled out");
+                return false;
+            }
+
+            var csrftoken = getCookie('csrftoken');
+
+            fetch('/main/login/register_view/', {
+                method: 'POST', // Use POST method for registration
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // Parse JSON response
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(data => {
+                if (data.status === "success") {
+                    console.log(data);
+                    alert("Registration successful");
+                } else {
+                    console.log(data);
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred during registration");
+            });
+        }
+
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="navi-container">
+            <ul id="main-menu" class="">
+                <li class="opened active">
+                    <a href="/main/main">
+                        <i class="entypo-gauge"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+
+                <li class="opened active">
+                    <a href="/main/login">
+                        <i class="entypo-globe"></i>
+                        <span>登录</span>
+                    </a>
+                </li>
+
+                <li class="opened active">
+                    <a href="/main/index">
+                        <i class="entypo-globe"></i>
+                        <span>侦测</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <form name="loginForm" onsubmit="validateForm(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <button type="submit" name="login">Login</button>
+            <button type="button" onclick="register()">Register</button>
+        </form>
+    </div>
+</body>
+</html>

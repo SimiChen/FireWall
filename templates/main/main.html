@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        /* Styles for the main menu */
+        #main-menu {
+            list-style-type: none; /* Remove bullet points */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styles for individual menu items */
+        #main-menu li {
+            display: block; /* Display menu items as blocks */
+            margin-bottom: 10px; /* Add spacing between menu items */
+        }
+
+        /* Styles for menu item links */
+        #main-menu li a {
+            color: #fff; /* Text color */
+            text-decoration: none; /* Remove underline */
+            padding: 5px 10px; /* Add padding */
+            display: block; /* Display links as blocks */
+        }
+
+        /* Styles for menu item icons */
+        #main-menu li a i {
+            margin-right: 5px; /* Add spacing between icon and text */
+        }
+
+        /* Hover effect for menu items */
+        #main-menu li a:hover {
+            background-color: #555; /* Background color on hover */
+        }
+
+
+        /* CSS for the container */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            height: 100vh; /* Set height to 100% of viewport height */
+        }
+
+        .navi-container {
+            background-color: #333; /* Background color */
+            padding: 10px; /* Add padding */
+            width: 5%; /* Set width to 5% of the screen width */
+            border: 5px solid #ccc; /* Border thickness */
+            border-radius: 10px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the container */
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Arrange items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+        /* CSS to clear default margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .title-container {
+            text-align: center; /* Center-align the content */
+            flex-grow: 1; /* Allow the title container to grow to fill the available space */
+            display: flex; /* Use flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        /* Styles for the h1 element */
+        .title-container h1 {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navi-container">
+            <ul id="main-menu" class="">
+                <li class="opened active">
+                    <a href="/main/main">
+                        <i class="entypo-gauge"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+
+                <li class="opened active">
+                    <a href="/main/login">
+                        <i class="entypo-globe"></i>
+                        <span>登录</span>
+                    </a>
+                </li>
+
+                <li class="opened active">
+                    <a href="/main/index">
+                        <i class="entypo-globe"></i>
+                        <span>侦测</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="title-container">
+            <h1>面向防火墙漏洞的动态分析系统</h1>
+        </div>
+    </div>
+</body>
+</html>
